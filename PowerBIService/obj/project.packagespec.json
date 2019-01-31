@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\ClientCommon\\ClientCommon.csproj",
-    "projectName": "ClientCommon",
-    "projectPath": "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\ClientCommon\\ClientCommon.csproj",
-    "outputPath": "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\ClientCommon\\obj\\",
+    "projectUniqueName": "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\PowerBIService\\PowerBIService.csproj",
+    "projectName": "PowerBIService",
+    "projectPath": "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\PowerBIService\\PowerBIService.csproj",
+    "outputPath": "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\PowerBIService\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -31,10 +31,6 @@
           "target": "Package",
           "version": "[2.1.0, )",
           "autoReferenced": true
-        },
-        "PowerBIDotNet": {
-          "target": "Package",
-          "version": "[1.0.17, )"
         }
       },
       "imports": [

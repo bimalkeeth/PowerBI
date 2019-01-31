@@ -23,6 +23,11 @@ namespace PowerClient.Controllers
         [HttpPut("[action]")]
         public bool CreateCustomer([FromBody]CustomerRequestVM request)
         {
+            
+            PBIDataset
+            
+            
+            
             return true;
         }
         [HttpGet("[action]")]

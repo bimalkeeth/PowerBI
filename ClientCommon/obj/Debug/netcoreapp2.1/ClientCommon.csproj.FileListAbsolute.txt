@@ -7,12 +7,12 @@
 /home/bill/RiderProjects/MoulaTest/Moula/ClientCommon/obj/Debug/netcoreapp2.1/ClientCommon.AssemblyInfo.cs
 /home/bill/RiderProjects/MoulaTest/Moula/ClientCommon/obj/Debug/netcoreapp2.1/ClientCommon.dll
 /home/bill/RiderProjects/MoulaTest/Moula/ClientCommon/obj/Debug/netcoreapp2.1/ClientCommon.pdb
+C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\bin\Debug\netcoreapp2.1\ClientCommon.deps.json
+C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\bin\Debug\netcoreapp2.1\ClientCommon.dll
+C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\bin\Debug\netcoreapp2.1\ClientCommon.pdb
 C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.csprojAssemblyReference.cache
 C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.csproj.CoreCompileInputs.cache
 C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.AssemblyInfoInputs.cache
 C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.AssemblyInfo.cs
 C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.dll
 C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.pdb
-C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\bin\Debug\netcoreapp2.1\ClientCommon.deps.json
-C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\bin\Debug\netcoreapp2.1\ClientCommon.dll
-C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\bin\Debug\netcoreapp2.1\ClientCommon.pdb
