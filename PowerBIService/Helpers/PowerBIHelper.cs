@@ -1,6 +1,12 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
+using PowerBIService.Common;
+using PowerBIService.Common.Contracts;
 
 namespace PowerBIService.Helpers
 {
@@ -41,6 +47,81 @@ namespace PowerBIService.Helpers
             }
 
             return input.Length;
+        }
+        public static void AddOrUpdateTable(this PBIDataset dataset, PBITable newTable)
+        {
+            for(int i = 0; i < dataset.Tables.Count; i++)
+            {
+                if(dataset.Tables[i].Name == newTable.Name)
+                {
+                    dataset.Tables[i].Columns = newTable.Columns;
+                    dataset.Tables[i].Measures = newTable.Measures;
+                    dataset.Tables[i].IsHidden = newTable.IsHidden;
+
+                    return;
+                }
+            }
+
+            newTable.ParentDataset = dataset;
+            newTable.ParentObject = dataset;
+            newTable.ParentGroup = dataset.ParentGroup;
+            dataset.Tables.Add(newTable);
+        }
+        public static PbiDataTypeEnum ToPBIDataType(this Type dataType)
+        {
+            switch(dataType.Name)
+            {
+                case "Boolean": return PbiDataTypeEnum.Boolean;
+                case "Byte": return PbiDataTypeEnum.Int64;
+                case "Char": return PbiDataTypeEnum.String;
+                case "DateTime": return PbiDataTypeEnum.DateTime;
+                case "Decimal": return PbiDataTypeEnum.Double;
+                case "Double": return PbiDataTypeEnum.Double;
+                case "Guid": return PbiDataTypeEnum.String;
+                case "Int16": return PbiDataTypeEnum.Int64;
+                case "Int32": return PbiDataTypeEnum.Int64;
+                case "Int64": return PbiDataTypeEnum.Int64;
+                case "SByte": return PbiDataTypeEnum.Int64;
+                case "Single": return PbiDataTypeEnum.Int64;
+                case "String": return PbiDataTypeEnum.String;
+                case "UInt16": return PbiDataTypeEnum.Int64;
+                case "UInt32": return PbiDataTypeEnum.Int64;
+                case "UInt64": return PbiDataTypeEnum.Int64;
+                default: throw new NotSupportedException($"Datatype '{dataType.Name}' is not supported in Power BI!");
+            }
+        }
+
+        public static List<PBIRow> PBIRows(this DataTable dataTable)
+        {
+            List<PBIRow> rows = new List<PBIRow>(dataTable.Rows.Count);
+            Dictionary<string, object> values;
+
+            foreach (DataRow dataRow in dataTable.Rows)
+            {
+                values = Enumerable.Range(0, dataTable.Columns.Count).ToDictionary(i => dataTable.Columns[i].ColumnName, i => dataRow.ItemArray[i]);
+                rows.Add(new PBIRow(values));
+            }
+
+            return rows;
+        }
+
+        public static List<PBIColumn> PBIColumns(this DataTable dataTable)
+        {
+            List<PBIColumn> cols = new List<PBIColumn>(dataTable.Columns.Count);
+
+            foreach (DataColumn dataColumn in dataTable.Columns)
+            {
+                cols.Add(new PBIColumn(dataColumn.ColumnName, dataColumn.DataType.ToPBIDataType()));
+            }
+
+            return cols;
+        }
+
+        public static void WriteWarning(string message, params string[] args)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(message, args);
+            Console.ResetColor();
         }
         
     }
