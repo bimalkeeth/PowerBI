@@ -1,14 +1,268 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    "signature": "f4c24c8d164d534dd54ca39d3f25edbdcd0c19ff"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.1": {
       "ClientCommon/1.0.0": {
+        "dependencies": {
+          "PowerBIDotNet": "1.0.17"
+        },
         "runtime": {
           "ClientCommon.dll": {}
+        }
+      },
+      "Bifrost/1.0.0.31": {
+        "runtime": {
+          "lib/net451/Bifrost.dll": {
+            "assemblyVersion": "1.0.0.31",
+            "fileVersion": "1.0.0.31"
+          }
+        }
+      },
+      "Microsoft.Azure.KeyVault.Core/1.0.0": {
+        "runtime": {
+          "lib/net40/Microsoft.Azure.KeyVault.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Microsoft.Bcl/1.1.10": {
+        "dependencies": {
+          "Microsoft.Bcl.Build": "1.0.14"
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {},
+      "Microsoft.Data.Edm/5.6.4": {
+        "runtime": {
+          "lib/net40/Microsoft.Data.Edm.dll": {
+            "assemblyVersion": "5.6.4.0",
+            "fileVersion": "5.6.4.62175"
+          }
+        },
+        "resources": {
+          "lib/net40/de/Microsoft.Data.Edm.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net40/es/Microsoft.Data.Edm.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net40/fr/Microsoft.Data.Edm.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net40/it/Microsoft.Data.Edm.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net40/ja/Microsoft.Data.Edm.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net40/ko/Microsoft.Data.Edm.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net40/ru/Microsoft.Data.Edm.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net40/zh-Hans/Microsoft.Data.Edm.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/net40/zh-Hant/Microsoft.Data.Edm.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Microsoft.Data.OData/5.6.4": {
+        "dependencies": {
+          "Microsoft.Data.Edm": "5.6.4",
+          "System.Spatial": "5.6.4"
+        },
+        "runtime": {
+          "lib/net40/Microsoft.Data.OData.dll": {
+            "assemblyVersion": "5.6.4.0",
+            "fileVersion": "5.6.4.62175"
+          }
+        },
+        "resources": {
+          "lib/net40/de/Microsoft.Data.OData.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net40/es/Microsoft.Data.OData.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net40/fr/Microsoft.Data.OData.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net40/it/Microsoft.Data.OData.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net40/ja/Microsoft.Data.OData.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net40/ko/Microsoft.Data.OData.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net40/ru/Microsoft.Data.OData.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net40/zh-Hans/Microsoft.Data.OData.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/net40/zh-Hant/Microsoft.Data.OData.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Microsoft.Data.Services.Client/5.6.4": {
+        "dependencies": {
+          "Microsoft.Data.OData": "5.6.4"
+        },
+        "runtime": {
+          "lib/net40/Microsoft.Data.Services.Client.dll": {
+            "assemblyVersion": "5.6.4.0",
+            "fileVersion": "5.6.4.62175"
+          }
+        },
+        "resources": {
+          "lib/net40/de/Microsoft.Data.Services.Client.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net40/es/Microsoft.Data.Services.Client.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net40/fr/Microsoft.Data.Services.Client.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net40/it/Microsoft.Data.Services.Client.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net40/ja/Microsoft.Data.Services.Client.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net40/ko/Microsoft.Data.Services.Client.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net40/ru/Microsoft.Data.Services.Client.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net40/zh-Hans/Microsoft.Data.Services.Client.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/net40/zh-Hant/Microsoft.Data.Services.Client.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Microsoft.IdentityModel.Clients.ActiveDirectory/2.19.208020213": {
+        "runtime": {
+          "lib/net45/Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll": {
+            "assemblyVersion": "2.19.0.0",
+            "fileVersion": "2.19.20802.213"
+          },
+          "lib/net45/Microsoft.IdentityModel.Clients.ActiveDirectory.dll": {
+            "assemblyVersion": "2.19.0.0",
+            "fileVersion": "2.19.20802.213"
+          }
+        }
+      },
+      "Microsoft.Net.Http/2.2.29": {
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "runtime": {
+          "lib/net45/System.Net.Http.Extensions.dll": {
+            "assemblyVersion": "2.2.29.0",
+            "fileVersion": "2.2.29.0"
+          },
+          "lib/net45/System.Net.Http.Primitives.dll": {
+            "assemblyVersion": "4.2.29.0",
+            "fileVersion": "4.2.29.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/6.0.8": {
+        "runtime": {
+          "lib/net45/Newtonsoft.Json.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.8.18111"
+          }
+        }
+      },
+      "NuGet.Build/2.8.6": {
+        "dependencies": {
+          "NuGet.CommandLine": "1.0.11220.26"
+        }
+      },
+      "NuGet.CommandLine/1.0.11220.26": {},
+      "PowerBIDotNet/1.0.17": {
+        "dependencies": {
+          "Bifrost": "1.0.0.31",
+          "Microsoft.Azure.KeyVault.Core": "1.0.0",
+          "Microsoft.Bcl": "1.1.10",
+          "Microsoft.Bcl.Build": "1.0.14",
+          "Microsoft.Data.Edm": "5.6.4",
+          "Microsoft.Data.OData": "5.6.4",
+          "Microsoft.Data.Services.Client": "5.6.4",
+          "Microsoft.IdentityModel.Clients.ActiveDirectory": "2.19.208020213",
+          "Microsoft.Net.Http": "2.2.29",
+          "Newtonsoft.Json": "6.0.8",
+          "NuGet.Build": "2.8.6",
+          "NuGet.CommandLine": "1.0.11220.26",
+          "System.Spatial": "5.6.4",
+          "WindowsAzure.Storage": "6.0.0"
+        },
+        "runtime": {
+          "lib/net452/PowerBIDotNet.dll": {
+            "assemblyVersion": "1.0.17.0",
+            "fileVersion": "1.0.17.0"
+          }
+        }
+      },
+      "System.Spatial/5.6.4": {
+        "runtime": {
+          "lib/net40/System.Spatial.dll": {
+            "assemblyVersion": "5.6.4.0",
+            "fileVersion": "5.6.4.62175"
+          }
+        },
+        "resources": {
+          "lib/net40/de/System.Spatial.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net40/es/System.Spatial.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net40/fr/System.Spatial.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net40/it/System.Spatial.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net40/ja/System.Spatial.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/net40/ko/System.Spatial.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/net40/ru/System.Spatial.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net40/zh-Hans/System.Spatial.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/net40/zh-Hant/System.Spatial.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "WindowsAzure.Storage/6.0.0": {
+        "runtime": {
+          "lib/net40/Microsoft.WindowsAzure.Storage.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.0.0"
+          }
         }
       }
     }
@@ -18,6 +272,111 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Bifrost/1.0.0.31": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qPQLjFiWhE/rJcowDCbx2Bifs6atHAdBSHd6f5cGN5PIJFkig5Sm8SYas2d3N8Yx8s6SYBOhsmN72xZnm78qxQ==",
+      "path": "bifrost/1.0.0.31",
+      "hashPath": "bifrost.1.0.0.31.nupkg.sha512"
+    },
+    "Microsoft.Azure.KeyVault.Core/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bp8w4eHDOCHknB/rJlU3JbG/xEoiqb1KelIa+6aEOXMwDrhCS8D1HKIGWqZdJymlLkt0E7XqBRd9Gl1OPz8rJw==",
+      "path": "microsoft.azure.keyvault.core/1.0.0",
+      "hashPath": "microsoft.azure.keyvault.core.1.0.0.nupkg.sha512"
+    },
+    "Microsoft.Bcl/1.1.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ne7S1fkpaKf0UJApAgpZOhYunvhzXEWseiuNNmMTtaG7bGULsAvMCSNjg9dKXwhheG5oTaTDToekokAkOrW44Q==",
+      "path": "microsoft.bcl/1.1.10",
+      "hashPath": "microsoft.bcl.1.1.10.nupkg.sha512"
+    },
+    "Microsoft.Bcl.Build/1.0.14": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TVFi0klpPcvqtP98eOY61ULPBw3AFcwrnuMAAdkhbYubMkQa/THPJWSYXoDSY/7uh2oUDCn41Nd+3EpUNzbZpQ==",
+      "path": "microsoft.bcl.build/1.0.14",
+      "hashPath": "microsoft.bcl.build.1.0.14.nupkg.sha512"
+    },
+    "Microsoft.Data.Edm/5.6.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UeHzE6jegBlTCmowAciDmUnashpndVNuPaaiWwmItEqjbfViQMJAEjFUqiiuZUR7kNI6HyMWY+Ve0FDBwPg49Q==",
+      "path": "microsoft.data.edm/5.6.4",
+      "hashPath": "microsoft.data.edm.5.6.4.nupkg.sha512"
+    },
+    "Microsoft.Data.OData/5.6.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+c1CADb5GpPn+Ic7FlB0JxoHITZbb04JLVdPuD/LXqnXmDEzWs6qJhzMC3vtBF6akmczX86UbDeyQ5lttOpncw==",
+      "path": "microsoft.data.odata/5.6.4",
+      "hashPath": "microsoft.data.odata.5.6.4.nupkg.sha512"
+    },
+    "Microsoft.Data.Services.Client/5.6.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-e8lrJOO4LsW0dGRX5jFr68qdnk4mmA1L2sBmiVKYSRz1eEDhm5atD/HXkc2OkN4F2BQTId7zhR1w5m5vTY0sLw==",
+      "path": "microsoft.data.services.client/5.6.4",
+      "hashPath": "microsoft.data.services.client.5.6.4.nupkg.sha512"
+    },
+    "Microsoft.IdentityModel.Clients.ActiveDirectory/2.19.208020213": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wYUZK6mZX5SPaMls3vzDF0exhGoYmmveJ7iHgZT0SfVCqompIlMQK/Cb/YGbVFZ4xOMKVt8fjO7hJ62GFCQCdw==",
+      "path": "microsoft.identitymodel.clients.activedirectory/2.19.208020213",
+      "hashPath": "microsoft.identitymodel.clients.activedirectory.2.19.208020213.nupkg.sha512"
+    },
+    "Microsoft.Net.Http/2.2.29": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-v8nUdSv3acVH5xQ7dYKHjdPXRRtpAW8YCWHa7M1rAwhfnKg5tSop21spsMeExcEqwmE86pgT9rECTgObWlgOOg==",
+      "path": "microsoft.net.http/2.2.29",
+      "hashPath": "microsoft.net.http.2.2.29.nupkg.sha512"
+    },
+    "Newtonsoft.Json/6.0.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SVs8SIMUvAHuubr0AS4vj8jTnuXicFeERPtTBjTLx7fSyLp6+OpH0itRPwKIZ6uX8k6jbkYAB8bkxnxiXbh9iA==",
+      "path": "newtonsoft.json/6.0.8",
+      "hashPath": "newtonsoft.json.6.0.8.nupkg.sha512"
+    },
+    "NuGet.Build/2.8.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JGOLxmMbbjMGeddoRO5xXG7vu0ofJi4p+kk+iKQe50JKMEWVhVr/PvIbaFATSWCFB+fw5XkvYpMfWZWQVW570Q==",
+      "path": "nuget.build/2.8.6",
+      "hashPath": "nuget.build.2.8.6.nupkg.sha512"
+    },
+    "NuGet.CommandLine/1.0.11220.26": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kVRibY+j9TLBiAM47VHxOrcJKXuKlP2tFV2Alwbl/CXwyeXLHRaHEyjVtJ0nffbqCoqWmy6TaLzaj7sfvv9h3w==",
+      "path": "nuget.commandline/1.0.11220.26",
+      "hashPath": "nuget.commandline.1.0.11220.26.nupkg.sha512"
+    },
+    "PowerBIDotNet/1.0.17": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-m37RapAbb9ArojspsYtDzBqi+jkO7qPucT3uSqoVSGP3AKImF3FZPlszvsQaccqAqd3imItZfA9ApKs2t0LhkA==",
+      "path": "powerbidotnet/1.0.17",
+      "hashPath": "powerbidotnet.1.0.17.nupkg.sha512"
+    },
+    "System.Spatial/5.6.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-M4e9eIiDHR+Is5jj/3wRv2HQw861LHmLApcXznvsVf7G3uBG/F1SBE8tmFOuRox8H86AVx+fiiD/027/DQx5BA==",
+      "path": "system.spatial/5.6.4",
+      "hashPath": "system.spatial.5.6.4.nupkg.sha512"
+    },
+    "WindowsAzure.Storage/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ayq3GBJ7bmXVeuB62JTTGvMHgyYPniCt77FxNvCPQNNhd1cMLZlT1F/9MAV89EJQDzlTaKpXD9+HExWh3nnttQ==",
+      "path": "windowsazure.storage/6.0.0",
+      "hashPath": "windowsazure.storage.6.0.0.nupkg.sha512"
     }
   }
 }
