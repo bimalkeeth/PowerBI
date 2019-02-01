@@ -1,0 +1,12 @@
+C:\Users\bkaluarachchi\RiderProjects\PowerBI\PowerBIApi\bin\Debug\netcoreapp2.1\PowerBIApi.deps.json
+C:\Users\bkaluarachchi\RiderProjects\PowerBI\PowerBIApi\bin\Debug\netcoreapp2.1\PowerBIApi.dll
+C:\Users\bkaluarachchi\RiderProjects\PowerBI\PowerBIApi\bin\Debug\netcoreapp2.1\PowerBIApi.pdb
+C:\Users\bkaluarachchi\RiderProjects\PowerBI\PowerBIApi\bin\Debug\netcoreapp2.1\Microsoft.Rest.ClientRuntime.dll
+C:\Users\bkaluarachchi\RiderProjects\PowerBI\PowerBIApi\bin\Debug\netcoreapp2.1\Microsoft.Rest.ClientRuntime.xml
+C:\Users\bkaluarachchi\RiderProjects\PowerBI\PowerBIApi\obj\Debug\netcoreapp2.1\PowerBIApi.csprojAssemblyReference.cache
+C:\Users\bkaluarachchi\RiderProjects\PowerBI\PowerBIApi\obj\Debug\netcoreapp2.1\PowerBIApi.csproj.CoreCompileInputs.cache
+C:\Users\bkaluarachchi\RiderProjects\PowerBI\PowerBIApi\obj\Debug\netcoreapp2.1\PowerBIApi.AssemblyInfoInputs.cache
+C:\Users\bkaluarachchi\RiderProjects\PowerBI\PowerBIApi\obj\Debug\netcoreapp2.1\PowerBIApi.AssemblyInfo.cs
+C:\Users\bkaluarachchi\RiderProjects\PowerBI\PowerBIApi\obj\Debug\netcoreapp2.1\PowerBIApi.csproj.CopyComplete
+C:\Users\bkaluarachchi\RiderProjects\PowerBI\PowerBIApi\obj\Debug\netcoreapp2.1\PowerBIApi.dll
+C:\Users\bkaluarachchi\RiderProjects\PowerBI\PowerBIApi\obj\Debug\netcoreapp2.1\PowerBIApi.pdb

@@ -205,6 +205,18 @@
           "lib/portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20/Microsoft.PowerBI.Api.dll": {}
         }
       },
+      "Microsoft.PowerBI.Core/1.1.11": {
+        "type": "package",
+        "dependencies": {
+          "System.IdentityModel.Tokens.Jwt": "4.0.2.206221351"
+        },
+        "compile": {
+          "lib/net45/Microsoft.PowerBI.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Microsoft.PowerBI.Core.dll": {}
+        }
+      },
       "Microsoft.Rest.ClientRuntime/2.0.1": {
         "type": "package",
         "compile": {
@@ -236,6 +248,15 @@
         },
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
+      "System.IdentityModel.Tokens.Jwt/4.0.2.206221351": {
+        "type": "package",
+        "compile": {
+          "lib/net45/System.IdentityModel.Tokens.Jwt.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.IdentityModel.Tokens.Jwt.dll": {}
         }
       }
     }
@@ -595,6 +616,18 @@
         "microsoft.powerbi.api.nuspec"
       ]
     },
+    "Microsoft.PowerBI.Core/1.1.11": {
+      "sha512": "o+N6nChWcyuphW2BvEgnUKOZQfvK/fYoZryxWsMNqbKZN1jkgXd148bBAsow3/Ekb9ijRGukKc9mOe+ouFJJTg==",
+      "type": "package",
+      "path": "microsoft.powerbi.core/1.1.11",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Microsoft.PowerBI.Core.dll",
+        "microsoft.powerbi.core.1.1.11.nupkg.sha512",
+        "microsoft.powerbi.core.nuspec"
+      ]
+    },
     "Microsoft.Rest.ClientRuntime/2.0.1": {
       "sha512": "sESvhY3Sq2FnX5oQ5eJ7MPtUH1VIICv2fWBRVpBdAL5FlltAQvk8zlidY7ltkrWsww0OPZ53S9GQn0kynEcJVQ==",
       "type": "package",
@@ -769,12 +802,26 @@
         "newtonsoft.json.11.0.1.nupkg.sha512",
         "newtonsoft.json.nuspec"
       ]
+    },
+    "System.IdentityModel.Tokens.Jwt/4.0.2.206221351": {
+      "sha512": "bBOwCeNaLK86xlBwAjuQ772eHFekr4pQQmPwgcVfQ2OMqGILCJp8YCEZfT3YBSYw3WEFM04vfLST4hmDtuKePQ==",
+      "type": "package",
+      "path": "system.identitymodel.tokens.jwt/4.0.2.206221351",
+      "files": [
+        ".nupkg.metadata",
+        "lib/net45/System.IdentityModel.Tokens.Jwt.Xml",
+        "lib/net45/System.IdentityModel.Tokens.Jwt.dll",
+        "lib/net45/System.IdentityModel.Tokens.Jwt.pdb",
+        "system.identitymodel.tokens.jwt.4.0.2.206221351.nupkg.sha512",
+        "system.identitymodel.tokens.jwt.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "Microsoft.NETCore.App >= 2.1.0",
       "Microsoft.PowerBI.Api >= 2.0.12",
+      "Microsoft.PowerBI.Core >= 1.1.11",
       "Newtonsoft.Json >= 11.0.1"
     ]
   },
@@ -829,6 +876,10 @@
             "target": "Package",
             "version": "[2.0.12, )"
           },
+          "Microsoft.PowerBI.Core": {
+            "target": "Package",
+            "version": "[1.1.11, )"
+          },
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[11.0.1, )"
@@ -857,8 +908,28 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
+      "message": "Package 'Microsoft.PowerBI.Core 1.1.11' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.PowerBI.Core",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
       "message": "Package 'Microsoft.Rest.ClientRuntime 2.0.1' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.Rest.ClientRuntime",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.IdentityModel.Tokens.Jwt 4.0.2.206221351' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "System.IdentityModel.Tokens.Jwt",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.1"
       ]
