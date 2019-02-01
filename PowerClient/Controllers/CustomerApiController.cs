@@ -24,7 +24,7 @@ namespace PowerClient.Controllers
         public bool CreateCustomer([FromBody]CustomerRequestVM request)
         {
             
-            PBIDataset
+           
             
             
             
