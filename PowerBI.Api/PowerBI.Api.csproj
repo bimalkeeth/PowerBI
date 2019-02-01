@@ -5,6 +5,10 @@
         <RootNamespace>PowerBIApi</RootNamespace>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <Optimize>true</Optimize>
+    </PropertyGroup>
+
     <ItemGroup>
       <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     </ItemGroup>

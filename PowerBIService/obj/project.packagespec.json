@@ -14,7 +14,11 @@
     ],
     "frameworks": {
       "netcoreapp2.1": {
-        "projectReferences": {}
+        "projectReferences": {
+          "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\PowerBI.Api\\PowerBI.Api.csproj": {
+            "projectPath": "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\PowerBI.Api\\PowerBI.Api.csproj"
+          }
+        }
       }
     },
     "warningProperties": {
@@ -31,18 +35,6 @@
           "target": "Package",
           "version": "[2.1.0, )",
           "autoReferenced": true
-        },
-        "Microsoft.PowerBI.Api": {
-          "target": "Package",
-          "version": "[2.0.12, )"
-        },
-        "Microsoft.PowerBI.Core": {
-          "target": "Package",
-          "version": "[1.1.11, )"
-        },
-        "Newtonsoft.Json": {
-          "target": "Package",
-          "version": "[11.0.1, )"
         }
       },
       "imports": [

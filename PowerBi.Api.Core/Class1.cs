@@ -2,7 +2,9 @@
 
 namespace PowerBi.Api.Core
 {
-    public class Class1
+    public class PowerService
     {
+        
+        
     }
 }

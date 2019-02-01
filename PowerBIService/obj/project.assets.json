@@ -193,39 +193,6 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.PowerBI.Api/2.0.12": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Rest.ClientRuntime": "2.0.1"
-        },
-        "compile": {
-          "lib/portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20/Microsoft.PowerBI.Api.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20/Microsoft.PowerBI.Api.dll": {}
-        }
-      },
-      "Microsoft.PowerBI.Core/1.1.11": {
-        "type": "package",
-        "dependencies": {
-          "System.IdentityModel.Tokens.Jwt": "4.0.2.206221351"
-        },
-        "compile": {
-          "lib/net45/Microsoft.PowerBI.Core.dll": {}
-        },
-        "runtime": {
-          "lib/net45/Microsoft.PowerBI.Core.dll": {}
-        }
-      },
-      "Microsoft.Rest.ClientRuntime/2.0.1": {
-        "type": "package",
-        "compile": {
-          "lib/net45/Microsoft.Rest.ClientRuntime.dll": {}
-        },
-        "runtime": {
-          "lib/net45/Microsoft.Rest.ClientRuntime.dll": {}
-        }
-      },
       "NETStandard.Library/2.0.3": {
         "type": "package",
         "dependencies": {
@@ -241,7 +208,7 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-      "Newtonsoft.Json/11.0.1": {
+      "Newtonsoft.Json/12.0.1": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
@@ -250,13 +217,17 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
-      "System.IdentityModel.Tokens.Jwt/4.0.2.206221351": {
-        "type": "package",
+      "PowerBI.Api/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.1"
+        },
         "compile": {
-          "lib/net45/System.IdentityModel.Tokens.Jwt.dll": {}
+          "bin/placeholder/PowerBI.Api.dll": {}
         },
         "runtime": {
-          "lib/net45/System.IdentityModel.Tokens.Jwt.dll": {}
+          "bin/placeholder/PowerBI.Api.dll": {}
         }
       }
     }
@@ -604,47 +575,6 @@
         "version.txt"
       ]
     },
-    "Microsoft.PowerBI.Api/2.0.12": {
-      "sha512": "YioIPd1vcg80/jx4flXgvkrY2q22dCHt6Tj1QEjAoNbPXmlcI64iWxD5E6Tw2EF5zHtVt8CWNAbv6ydsiGzhvA==",
-      "type": "package",
-      "path": "microsoft.powerbi.api/2.0.12",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20/Microsoft.PowerBI.Api.dll",
-        "microsoft.powerbi.api.2.0.12.nupkg.sha512",
-        "microsoft.powerbi.api.nuspec"
-      ]
-    },
-    "Microsoft.PowerBI.Core/1.1.11": {
-      "sha512": "o+N6nChWcyuphW2BvEgnUKOZQfvK/fYoZryxWsMNqbKZN1jkgXd148bBAsow3/Ekb9ijRGukKc9mOe+ouFJJTg==",
-      "type": "package",
-      "path": "microsoft.powerbi.core/1.1.11",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net45/Microsoft.PowerBI.Core.dll",
-        "microsoft.powerbi.core.1.1.11.nupkg.sha512",
-        "microsoft.powerbi.core.nuspec"
-      ]
-    },
-    "Microsoft.Rest.ClientRuntime/2.0.1": {
-      "sha512": "sESvhY3Sq2FnX5oQ5eJ7MPtUH1VIICv2fWBRVpBdAL5FlltAQvk8zlidY7ltkrWsww0OPZ53S9GQn0kynEcJVQ==",
-      "type": "package",
-      "path": "microsoft.rest.clientruntime/2.0.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/dnxcore50/Microsoft.Rest.ClientRuntime.dll",
-        "lib/dnxcore50/Microsoft.Rest.ClientRuntime.xml",
-        "lib/net45/Microsoft.Rest.ClientRuntime.dll",
-        "lib/net45/Microsoft.Rest.ClientRuntime.xml",
-        "lib/portable-net45+win+wpa81/Microsoft.Rest.ClientRuntime.dll",
-        "lib/portable-net45+win+wpa81/Microsoft.Rest.ClientRuntime.xml",
-        "microsoft.rest.clientruntime.2.0.1.nupkg.sha512",
-        "microsoft.rest.clientruntime.nuspec"
-      ]
-    },
     "NETStandard.Library/2.0.3": {
       "sha512": "st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
       "type": "package",
@@ -773,56 +703,55 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Newtonsoft.Json/11.0.1": {
-      "sha512": "pNN4l+J6LlpIvHOeNdXlwxv39NPJ2B5klz+Rd2UQZIx30Squ5oND1Yy3wEAUoKn0GPUj6Yxt9lxlYWQqfZcvKg==",
+    "Newtonsoft.Json/12.0.1": {
+      "sha512": "pBR3wCgYWZGiaZDYP+HHYnalVnPJlpP1q55qvVb+adrDHmFMDc1NAKio61xTwftK3Pw5h7TZJPJEEVMd6ty8rg==",
       "type": "package",
-      "path": "newtonsoft.json/11.0.1",
+      "path": "newtonsoft.json/12.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.md",
         "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.pdb",
         "lib/net20/Newtonsoft.Json.xml",
         "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.pdb",
         "lib/net35/Newtonsoft.Json.xml",
         "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.pdb",
         "lib/net40/Newtonsoft.Json.xml",
         "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.pdb",
         "lib/net45/Newtonsoft.Json.xml",
         "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.pdb",
         "lib/netstandard1.0/Newtonsoft.Json.xml",
         "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.pdb",
         "lib/netstandard1.3/Newtonsoft.Json.xml",
         "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.pdb",
         "lib/netstandard2.0/Newtonsoft.Json.xml",
         "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.pdb",
         "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.pdb",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
-        "newtonsoft.json.11.0.1.nupkg.sha512",
+        "newtonsoft.json.12.0.1.nupkg.sha512",
         "newtonsoft.json.nuspec"
       ]
     },
-    "System.IdentityModel.Tokens.Jwt/4.0.2.206221351": {
-      "sha512": "bBOwCeNaLK86xlBwAjuQ772eHFekr4pQQmPwgcVfQ2OMqGILCJp8YCEZfT3YBSYw3WEFM04vfLST4hmDtuKePQ==",
-      "type": "package",
-      "path": "system.identitymodel.tokens.jwt/4.0.2.206221351",
-      "files": [
-        ".nupkg.metadata",
-        "lib/net45/System.IdentityModel.Tokens.Jwt.Xml",
-        "lib/net45/System.IdentityModel.Tokens.Jwt.dll",
-        "lib/net45/System.IdentityModel.Tokens.Jwt.pdb",
-        "system.identitymodel.tokens.jwt.4.0.2.206221351.nupkg.sha512",
-        "system.identitymodel.tokens.jwt.nuspec"
-      ]
+    "PowerBI.Api/1.0.0": {
+      "type": "project",
+      "path": "../PowerBI.Api/PowerBI.Api.csproj",
+      "msbuildProject": "../PowerBI.Api/PowerBI.Api.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "Microsoft.NETCore.App >= 2.1.0",
-      "Microsoft.PowerBI.Api >= 2.0.12",
-      "Microsoft.PowerBI.Core >= 1.1.11",
-      "Newtonsoft.Json >= 11.0.1"
+      "PowerBI.Api >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -854,7 +783,11 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\PowerBI.Api\\PowerBI.Api.csproj": {
+              "projectPath": "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\PowerBI.Api\\PowerBI.Api.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -871,18 +804,6 @@
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true
-          },
-          "Microsoft.PowerBI.Api": {
-            "target": "Package",
-            "version": "[2.0.12, )"
-          },
-          "Microsoft.PowerBI.Core": {
-            "target": "Package",
-            "version": "[1.1.11, )"
-          },
-          "Newtonsoft.Json": {
-            "target": "Package",
-            "version": "[11.0.1, )"
           }
         },
         "imports": [
@@ -892,47 +813,5 @@
         "warn": true
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.PowerBI.Api 2.0.12' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.PowerBI.Api",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.PowerBI.Core 1.1.11' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.PowerBI.Core",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.Rest.ClientRuntime 2.0.1' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.Rest.ClientRuntime",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.IdentityModel.Tokens.Jwt 4.0.2.206221351' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
-      "libraryId": "System.IdentityModel.Tokens.Jwt",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    }
-  ]
+  }
 }

@@ -254,6 +254,7 @@ namespace Microsoft.PowerBI.Api.V1
             }
         }
 
+       
         /// <summary>
         /// An optional partial-method to perform custom initialization.
         ///</summary>
