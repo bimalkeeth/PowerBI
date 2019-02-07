@@ -1,4 +1,5 @@
-﻿using Microsoft.Rest;
+﻿using System.Threading.Tasks;
+using Microsoft.Rest;
 using PowerBIService.Common;
 using PowerBIService.Services.Base;
 using PowerBIService.Services.Interfaces;
@@ -22,7 +23,9 @@ namespace PowerBIService.Services.Implementation
         public EmbedConfig EmbedReport(UserData userData)
         {
             UserData = userData;
-            var data=AuthenticateAsync().Result;
+            var data = Task.Run(async () => await AuthenticateAsync()).ConfigureAwait(false);
+           //var ss= Task.Run(async () => await GetAccessToken()).ConfigureAwait(false);
+             data.GetAwaiter().GetResult();
             return null;
         }
         
