@@ -15,8 +15,11 @@
     "frameworks": {
       "netcoreapp2.1": {
         "projectReferences": {
-          "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\PowerBI.Api\\PowerBI.Api.csproj": {
-            "projectPath": "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\PowerBI.Api\\PowerBI.Api.csproj"
+          "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\ClientCommon\\ClientCommon.csproj": {
+            "projectPath": "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\ClientCommon\\ClientCommon.csproj"
+          },
+          "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\PowerClient\\PowerClient.csproj": {
+            "projectPath": "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\PowerClient\\PowerClient.csproj"
           }
         }
       }
@@ -38,11 +41,19 @@
           "target": "Package",
           "version": "[2.2.0, )"
         },
+        "Microsoft.IdentityModel.Clients.ActiveDirectory": {
+          "target": "Package",
+          "version": "[4.5.0, )"
+        },
         "Microsoft.NETCore.App": {
           "suppressParent": "All",
           "target": "Package",
           "version": "[2.1.0, )",
           "autoReferenced": true
+        },
+        "Microsoft.PowerBI.Api": {
+          "target": "Package",
+          "version": "[2.4.0, )"
         }
       },
       "imports": [

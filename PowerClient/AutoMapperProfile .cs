@@ -1,6 +1,6 @@
 using AutoMapper;
 
-namespace PowerClient
+namespace ClientCommon
 {
     public class AutoMapperProfile: Profile
     {

@@ -2,7 +2,7 @@ using System.Net;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace PowerClient
+namespace ClientCommon
 {
     public class Program
     {

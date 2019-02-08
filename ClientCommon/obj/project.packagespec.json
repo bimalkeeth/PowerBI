@@ -32,9 +32,9 @@
           "version": "[2.1.0, )",
           "autoReferenced": true
         },
-        "PowerBIDotNet": {
+        "Microsoft.PowerBI.Api": {
           "target": "Package",
-          "version": "[1.0.17, )"
+          "version": "[2.4.0, )"
         }
       },
       "imports": [

@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using ClientCommon.Contract;
 using Microsoft.AspNetCore.Mvc;
-using PowerClient.Contract;
 
 
-namespace PowerClient.Controllers
+namespace ClientCommon.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]

@@ -1,4 +1,4 @@
-namespace PowerClient.Contract
+namespace ClientCommon.Contract
 {
     public class ContactRequestVM
     {

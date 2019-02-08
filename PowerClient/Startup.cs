@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 
-namespace PowerClient
+namespace ClientCommon
 {
     public class Startup
     {
