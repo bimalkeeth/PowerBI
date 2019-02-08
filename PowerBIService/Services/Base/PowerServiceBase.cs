@@ -10,7 +10,6 @@ namespace PowerBIService.Services.Base
 {
 
    
-    
     public abstract class PowerServiceBase
     {
         #region Base Variables
@@ -21,7 +20,8 @@ namespace PowerBIService.Services.Base
         
         
         protected static string POWER_BI_API_URL = "https://api.powerbi.com";
-        private static string POWER_BI_AUTHORITY_URL = "https://login.microsoftonline.com/"; //"https://login.windows.net/common/oauth2/authorize/";
+
+        private static string POWER_BI_AUTHORITY_URL ="https://login.microsoftonline.com/common/oauth2/authorize/";//"https://login.microsoftonline.com/"; //"https://login.windows.net/common/oauth2/authorize/";
         private static string POWER_BI_AUTHORITY_TOKEN_URL = "https://login.windows.net/470cec91-5a0e-47c7-87a9-2fcaf82d5d90/oauth2/token";
         private static string POWER_BI_RESOURCE_URL = "https://analysis.windows.net/powerbi/api";
        

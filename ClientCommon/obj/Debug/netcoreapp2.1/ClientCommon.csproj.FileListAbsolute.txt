@@ -16,3 +16,5 @@ C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\obj\Debug\netcoreapp2.
 C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.AssemblyInfo.cs
 C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.dll
 C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.pdb
+C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.PowerResource.resources
+C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.csproj.GenerateResource.cache
