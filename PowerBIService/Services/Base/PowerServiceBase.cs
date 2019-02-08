@@ -52,6 +52,7 @@ namespace PowerBIService.Services.Base
             }
             try
             {
+                
                 TokenResult = await ctx.AcquireTokenAsync(POWER_BI_RESOURCE_URL,clientCredential);
                 PTokenCredentials=new TokenCredentials(TokenResult.AccessToken,TokenResult.AccessTokenType);
                 
