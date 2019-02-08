@@ -43,7 +43,7 @@
         },
         "Microsoft.IdentityModel.Clients.ActiveDirectory": {
           "target": "Package",
-          "version": "[4.5.0, )"
+          "version": "[3.13.9, )"
         },
         "Microsoft.NETCore.App": {
           "suppressParent": "All",

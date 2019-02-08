@@ -1,9 +1,11 @@
 using System;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Microsoft.Rest;
+using Newtonsoft.Json.Linq;
 using PowerBIService.Common;
 
 namespace PowerBIService.Services.Base
@@ -29,12 +31,15 @@ namespace PowerBIService.Services.Base
         #region Authontication
         protected  async Task<bool> AuthenticateAsync()
         {
+            
+            
+            TokenCache TC = new TokenCache();
             var clientCredential = new ClientCredential(UserData.ApplicationId, UserData.SecretId);
             AuthenticationContext ctx = null;
             
             if (!string.IsNullOrEmpty(UserData.TenantId))
             {
-                ctx=new AuthenticationContext(POWER_BI_AUTHORITY_URL+UserData.TenantId);
+                ctx=new AuthenticationContext(POWER_BI_AUTHORITY_URL+UserData.TenantId,false,TC);
             }
             else
             {
@@ -42,7 +47,7 @@ namespace PowerBIService.Services.Base
                 if (ctx.TokenCache.Count > 0)
                 {
                     var cacheToken = ctx.TokenCache.ReadItems().First().TenantId;
-                    ctx = new AuthenticationContext(POWER_BI_AUTHORITY_URL + cacheToken);
+                    ctx = new AuthenticationContext(POWER_BI_AUTHORITY_URL+cacheToken ,false,TC);
                 }
             }
             try
