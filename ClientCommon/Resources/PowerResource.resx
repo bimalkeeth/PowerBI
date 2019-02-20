@@ -42,5 +42,8 @@
     <data name="ValidationError_AuthenticationError">
         <value>Authentication is in error.</value>
     </data>
+    <data name="ProcessError_UserAssignment">
+        <value>User Assignment failed and  is in error.</value>
+    </data>
     
 </root>

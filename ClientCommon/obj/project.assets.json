@@ -790,11 +790,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\ClientCommon\\ClientCommon.csproj",
+      "projectUniqueName": "D:\\Assetics\\PowerBI\\PowerBI\\ClientCommon\\ClientCommon.csproj",
       "projectName": "ClientCommon",
-      "projectPath": "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\ClientCommon\\ClientCommon.csproj",
+      "projectPath": "D:\\Assetics\\PowerBI\\PowerBI\\ClientCommon\\ClientCommon.csproj",
       "packagesPath": "C:\\Users\\bkaluarachchi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\ClientCommon\\obj\\",
+      "outputPath": "D:\\Assetics\\PowerBI\\PowerBI\\ClientCommon\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

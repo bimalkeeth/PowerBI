@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\PowerConsole\\PowerConsole.csproj",
+    "projectUniqueName": "D:\\Assetics\\PowerBI\\PowerBI\\PowerConsole\\PowerConsole.csproj",
     "projectName": "PowerConsole",
-    "projectPath": "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\PowerConsole\\PowerConsole.csproj",
-    "outputPath": "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\PowerConsole\\obj\\",
+    "projectPath": "D:\\Assetics\\PowerBI\\PowerBI\\PowerConsole\\PowerConsole.csproj",
+    "outputPath": "D:\\Assetics\\PowerBI\\PowerBI\\PowerConsole\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -15,8 +15,8 @@
     "frameworks": {
       "netcoreapp2.1": {
         "projectReferences": {
-          "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\PowerBIService\\PowerBIService.csproj": {
-            "projectPath": "C:\\Users\\bkaluarachchi\\RiderProjects\\PowerBI\\PowerBIService\\PowerBIService.csproj"
+          "D:\\Assetics\\PowerBI\\PowerBI\\PowerBIService\\PowerBIService.csproj": {
+            "projectPath": "D:\\Assetics\\PowerBI\\PowerBI\\PowerBIService\\PowerBIService.csproj"
           }
         }
       }

@@ -18,3 +18,14 @@ C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\obj\Debug\netcoreapp2.
 C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.pdb
 C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.PowerResource.resources
 C:\Users\bkaluarachchi\RiderProjects\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.csproj.GenerateResource.cache
+D:\Assetics\PowerBI\PowerBI\ClientCommon\bin\Debug\netcoreapp2.1\ClientCommon.deps.json
+D:\Assetics\PowerBI\PowerBI\ClientCommon\bin\Debug\netcoreapp2.1\ClientCommon.dll
+D:\Assetics\PowerBI\PowerBI\ClientCommon\bin\Debug\netcoreapp2.1\ClientCommon.pdb
+D:\Assetics\PowerBI\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.csprojAssemblyReference.cache
+D:\Assetics\PowerBI\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.csproj.GenerateResource.cache
+D:\Assetics\PowerBI\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.csproj.CoreCompileInputs.cache
+D:\Assetics\PowerBI\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.AssemblyInfoInputs.cache
+D:\Assetics\PowerBI\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.AssemblyInfo.cs
+D:\Assetics\PowerBI\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.dll
+D:\Assetics\PowerBI\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.pdb
+D:\Assetics\PowerBI\PowerBI\ClientCommon\obj\Debug\netcoreapp2.1\ClientCommon.Resources.PowerResource.resources

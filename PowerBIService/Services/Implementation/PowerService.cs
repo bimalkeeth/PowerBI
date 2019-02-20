@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Bifrost.Extensions;
 using ClientCommon;
 using ClientCommon.Contract;
+using ClientCommon.Resources;
 using Microsoft.PowerBI.Api.V2;
 using Microsoft.PowerBI.Api.V2.Models;
 using Microsoft.Rest;
@@ -20,7 +21,6 @@ namespace PowerBIService.Services.Implementation
         protected EmbedConfig         MEmbedConfig;
         protected TileEmbedConfig     MTileEmbedConfig;
         protected TokenCredentials    MTokenCredentials;
-
 
         public PowerService()
         {
@@ -59,7 +59,7 @@ namespace PowerBIService.Services.Implementation
             {
                 throw new ValidationException(PowerResource.ValidationError_ParentReportsNameMissingForClone);
             }
-            UserData = cloneReportRequest.Credential;
+            UserCredential = cloneReportRequest.Credential;
 
             if (!await AuthenticateAsync())
             {
@@ -68,10 +68,8 @@ namespace PowerBIService.Services.Implementation
             return await Clone(cloneReportRequest);
           
         }
-
         protected async internal Task<CloneReportResponse[]> Clone(CloneReportRequest cloneReportRequest)
         {
-
             using (var pClient = new PowerBIClient(new Uri(POWER_BI_API_URL), PTokenCredentials))
             {
 
@@ -79,33 +77,35 @@ namespace PowerBIService.Services.Implementation
             }
             return new CloneReportResponse[] { };
         }
-        
         public EmbedConfig EmbedReport(UserData userData)
         {
-            base.UserData = userData;
+            UserCredential = userData;
             var data = Task.Run(async () => await AuthenticateAsync()).ConfigureAwait(false);
             data.GetAwaiter().GetResult();
             return null;
         }
         
+        
         public async Task<bool> CreateGroup(GroupCreateRequest groupCreateRequest)
         {
-            base.UserData = groupCreateRequest.Credential;
+            UserCredential = groupCreateRequest.Credential;
             await AuthenticateAsync();
             using (var pClient = new PowerBIClient(new Uri(POWER_BI_API_URL), PTokenCredentials))
             {
-                var ddx= await pClient.Groups.GetGroupsWithHttpMessagesAsync();
-                
-                
+              
                var group= await pClient.Groups.CreateGroupWithHttpMessagesAsync(new GroupCreationRequest{Name =groupCreateRequest.GroupName},true);
-
                if (groupCreateRequest.Members.Any())
                {
                    groupCreateRequest.Members.ForEach(async s =>
                    {
-                       await pClient.Groups.AddGroupUserWithHttpMessagesAsync(group.Body.Id,
-                           new GroupUserAccessRight
-                               {EmailAddress = s.MemberEmail, GroupUserAccessRightProperty = s.GroupUserAccessRight}); 
+                       try
+                       {
+                           await pClient.Groups.AddGroupUserWithHttpMessagesAsync(group.Body.Id,new GroupUserAccessRight{EmailAddress = s.MemberEmail, GroupUserAccessRightProperty = s.GroupUserAccessRight.GetRight()});
+                       }
+                       catch (Exception e)
+                       {
+                           throw new ApplicationException(PowerResource.ProcessError_UserAssignment);
+                       }
                    });
                }
             }
