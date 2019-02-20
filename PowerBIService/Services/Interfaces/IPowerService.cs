@@ -6,13 +6,7 @@ namespace PowerBIService.Services.Interfaces
 {
     public interface IPowerService
     {
-        /// <summary>
-        /// Embed Report
-        /// </summary>
-        /// <param name="userData"></param>
-        /// <returns></returns>
-        EmbedConfig EmbedReport(UserData userData);
-        
+       
         /// <summary>
         /// Create Group
         /// </summary>
@@ -26,6 +20,8 @@ namespace PowerBIService.Services.Interfaces
         /// <param name="cloneReportRequest"></param>
         /// <returns></returns>
         Task<CloneReportResponse[]> CloneReports(CloneReportRequest cloneReportRequest);
+
+        Task<EmbedConfig> ClientEmbedReport(EmbedReportRequest embedReportRequest);
     }
 
    

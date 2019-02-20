@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Bifrost.Extensions;
@@ -47,15 +48,15 @@ namespace PowerBIService.Services.Implementation
             {
                 throw new ValidationException(PowerResource.ValidationError_ReportsMissingForClone);
             }
-            if (string.IsNullOrWhiteSpace(cloneReportRequest.ParentWorkSpace))
+            if (string.IsNullOrWhiteSpace(cloneReportRequest.ParentWorkSpaceId))
             {
                 throw new ValidationException(PowerResource.ValidationError_ParentWorkSpaceMissingForClone);
             }
-            if (string.IsNullOrWhiteSpace(cloneReportRequest.ClientWorkSpace))
+            if (string.IsNullOrWhiteSpace(cloneReportRequest.ClientWorkSpaceId))
             {
                 throw new ValidationException(PowerResource.ValidationError_ClientWorkSpaceMissingForClone);
             }
-            if (cloneReportRequest.CloneReports.FirstOrDefault(s => string.IsNullOrWhiteSpace(s.ParentReportName))!=null)
+            if (cloneReportRequest.CloneReports.FirstOrDefault(s => string.IsNullOrWhiteSpace(s.ParentReportId))!=null)
             {
                 throw new ValidationException(PowerResource.ValidationError_ParentReportsNameMissingForClone);
             }
@@ -68,24 +69,203 @@ namespace PowerBIService.Services.Implementation
             return await Clone(cloneReportRequest);
           
         }
-        protected async internal Task<CloneReportResponse[]> Clone(CloneReportRequest cloneReportRequest)
+        private async Task<CloneReportResponse[]> Clone(CloneReportRequest cloneReportRequest)
         {
-            using (var pClient = new PowerBIClient(new Uri(POWER_BI_API_URL), PTokenCredentials))
+            var responseList = new List<CloneReportResponse>();
+            try
             {
+                using (var pClient = new PowerBIClient(new Uri(POWER_BI_API_URL), PTokenCredentials))
+                {
+                    var groups = await pClient.Groups.GetGroupsWithHttpMessagesAsync();
+                    var group = groups.Body.Value.FirstOrDefault(s => s.Id == cloneReportRequest.ParentWorkSpaceId);
+                    if (group == null)
+                    {
+                        throw new ValidationException(PowerResource.ValidationErrorParentGroupNotFoundError);
+                    }
 
+                    var clientGroup = groups.Body.Value.FirstOrDefault(s => s.Id == cloneReportRequest.ClientWorkSpaceId);
+                    if (clientGroup == null)
+                    {
+                        throw new ValidationException(PowerResource.ValidationErrorClientGroupNotFoundError);
+                    }
 
+                    var reports = await pClient.Reports.GetReportsInGroupAsync(group.Id);
+                    if (reports.Value.Any())
+                    {
+                        foreach (var cloneReport in cloneReportRequest.CloneReports)
+                        {
+                           var parentReport= reports.Value.FirstOrDefault(s => s.Id == cloneReport.ParentReportId);
+                           if (parentReport == null) continue;
+
+                               var export= await pClient.Reports.ExportReportInGroupAsync(@group.Id, parentReport.Id);
+                               var import = await TryUploadAsync(pClient, clientGroup.Id, export, cloneReport.CloneReportName);
+                               var reportDatasetId = import.Datasets.First().Id;
+                               try
+                               {
+                                   var parameter = new Dictionary<string, string> {{"ConnectionUrl", cloneReport.WebApiEndPoint}};
+
+                                   var reportParameters = await pClient.Datasets.GetParametersInGroupAsync(clientGroup.Id, reportDatasetId);
+                                   if (reportParameters!=null && reportParameters.Value.Any())
+                                   {
+                                       await SetReportParameters(pClient, clientGroup.Id, reportDatasetId, reportParameters.Value,parameter );
+                                   }
+                                   foreach (var impDataset in import.Datasets)
+                                   {
+                                       var refresh=await pClient.Datasets.RefreshDatasetInGroupWithHttpMessagesAsync(clientGroup.Id, impDataset.Id);
+                                   }
+                                   var clientGroupReports= await pClient.Reports.GetReportsInGroupAsync(clientGroup.Id);
+                                   
+                                   foreach (var impReport in import.Reports)
+                                   {
+                                       var cloneResultReport= clientGroupReports.Value.FirstOrDefault(s =>s.Id == impReport.Id);
+                                       await pClient.Reports.RebindReportInGroupWithHttpMessagesAsync(clientGroup.Id,impReport.Id, new RebindReportRequest{DatasetId= cloneResultReport.DatasetId});
+                                   }
+                                   responseList.Add(new CloneReportResponse
+                                   {
+                                       CloneReportName = cloneReport.CloneReportName,
+                                       CloneReportId = import.Reports.FirstOrDefault()?.Id,
+                                       ParentReportId = cloneReport.ParentReportId,
+                                       ParentReportName = parentReport.Name,
+                                       Success = true
+                                   });
+                               }
+                               catch (Exception e){throw e;}
+                        }
+                    }
+                }
             }
-            return new CloneReportResponse[] { };
+            catch (Exception exp)
+            {
+               throw new ApplicationException(exp.Message);
+            }
+            return responseList.ToArray();
         }
-        public EmbedConfig EmbedReport(UserData userData)
+        
+        private async Task<bool> UpdateAndRefreshDataSet(PowerBIClient pClient,EmbedReportRequest embedReportRequest, string groupId,string reportId,string dataSetId)
         {
-            UserCredential = userData;
-            var data = Task.Run(async () => await AuthenticateAsync()).ConfigureAwait(false);
-            data.GetAwaiter().GetResult();
+            try
+            {
+                var dataset= await pClient.Datasets.GetDatasetByIdInGroupWithHttpMessagesAsync(groupId, dataSetId);
+                var data= await pClient.Datasets.GetParametersInGroupWithHttpMessagesAsync(groupId,  dataSetId);
+
+
+                var ParamList = new List<UpdateDatasetParameterDetails>();
+                ParamList.Add(new UpdateDatasetParameterDetails
+                {
+                    Name = "ConnectionUrl",
+                    NewValue = embedReportRequest.EmbedReportUrl
+                });
+            
+                await pClient.Datasets.UpdateParametersInGroupWithHttpMessagesAsync(groupId, dataSetId,new UpdateDatasetParametersRequest{UpdateDetails =ParamList});
+                await pClient.Datasets.RefreshDatasetInGroupWithHttpMessagesAsync(groupId, dataSetId);
+                await pClient.Reports.RebindReportInGroupWithHttpMessagesAsync(groupId,reportId, new RebindReportRequest{DatasetId =dataset.Body.Id});
+                return true;
+            }
+            catch (Exception exp)
+            {
+                return false;
+            }
+        }
+        
+        public async Task<EmbedConfig> ClientEmbedReport(EmbedReportRequest embedReportRequest)
+        {
+            if (string.IsNullOrWhiteSpace(embedReportRequest.EmbedReportUrl))
+            {
+                throw new ValidationException(PowerResource.EmbedReportUrlIsMissingError);
+            }
+
+            if (string.IsNullOrWhiteSpace(embedReportRequest.WorkSpaceId))
+            {
+                throw new ValidationException(PowerResource.ValidationError_EmbedWorkSpaceMissingForClone);
+            }
+            
+            if (string.IsNullOrWhiteSpace(embedReportRequest.ReportId))
+            {
+                throw new ValidationException(PowerResource.ValidationError_EmbedReportsMissingError);
+            }
+            
+            if (embedReportRequest.Credential==null)
+            {
+                throw new ValidationException(PowerResource.ValidationErrorCredentialMissingError);
+            }
+            
+            return await EmbedReport(embedReportRequest);
+        }
+        private async Task<EmbedConfig> EmbedReport(EmbedReportRequest embedReportRequest)
+        {
+            var config = new EmbedConfig();
+            UserCredential = embedReportRequest.Credential;
+            try
+            {
+                var data =  await AuthenticateAsync();
+                using (var pClient = new PowerBIClient(new Uri(POWER_BI_API_URL), PTokenCredentials))
+                {
+
+                    var groups = await pClient.Groups.GetGroupsWithHttpMessagesAsync();
+                    var group = groups.Body.Value.FirstOrDefault(s => s.Id == embedReportRequest.WorkSpaceId);
+                    if (group == null)
+                    {
+                        throw new ValidationException(PowerResource.ValidationErrorParentGroupNotFoundError);
+                    }
+                    var reports = await pClient.Reports.GetReportsInGroupAsync(group.Id);
+                    if (!reports.Value.Any())
+                    {
+                        config.ErrorMessage = PowerResource.EmbedReportNotFoundError;
+                        return config;
+                    }
+
+                    var embeddingReport=reports.Value.FirstOrDefault(s => s.Id == embedReportRequest.ReportId);
+                    if (embeddingReport == null)
+                    {
+                        config.ErrorMessage = PowerResource.EmbedReportNotFoundError;
+                    }
+
+                    var dataSet=await pClient.Datasets.GetDatasetByIdInGroupAsync(group.Id, embeddingReport.DatasetId);
+                    
+                    
+                    config.IsEffectiveIdentityRequired = dataSet.IsEffectiveIdentityRequired;
+                    config.IsEffectiveIdentityRolesRequired = dataSet.IsEffectiveIdentityRolesRequired;
+
+                   var upDateResponse= await UpdateAndRefreshDataSet(pClient,embedReportRequest, group.Id, embeddingReport.Id, dataSet.Id);
+                   if (upDateResponse)
+                   {
+                       GenerateTokenRequest generateTokenRequestParameters;
+                       if (!string.IsNullOrWhiteSpace(embedReportRequest.EmbedUserName))
+                       {
+                           var rls = new EffectiveIdentity(embedReportRequest.EmbedUserName, new List<string> { embeddingReport.DatasetId });
+                           if (!string.IsNullOrWhiteSpace(embedReportRequest.EmbedRoles))
+                           {
+                               var rolesList = new List<string>();
+                               rolesList.AddRange(embedReportRequest.EmbedRoles.Split(','));
+                               rls.Roles = rolesList;
+                           }
+                           generateTokenRequestParameters = new GenerateTokenRequest(accessLevel: "view", identities: new List<EffectiveIdentity> { rls });
+                       }
+                       else
+                       {
+                           generateTokenRequestParameters = new GenerateTokenRequest(accessLevel: "view");
+                       }
+                       var tokenResponse = await pClient.Reports.GenerateTokenInGroupAsync(group.Id, embeddingReport.Id, generateTokenRequestParameters);
+                       if (tokenResponse == null)
+                       {
+                           config.ErrorMessage = "Failed to generate embed token.";
+                           return config;
+                       }
+                       
+                       config.EmbedToken = tokenResponse;
+                       config.EmbedUrl = embeddingReport.EmbedUrl;
+                       config.Id = embeddingReport.Id;
+                       return config;
+                   }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
             return null;
         }
-        
-        
         public async Task<bool> CreateGroup(GroupCreateRequest groupCreateRequest)
         {
             UserCredential = groupCreateRequest.Credential;

@@ -45,5 +45,25 @@
     <data name="ProcessError_UserAssignment">
         <value>User Assignment failed and  is in error.</value>
     </data>
-    
+    <data name="ValidationErrorParentGroupNotFoundError">
+        <value>Parent group can not be found.</value>
+    </data>
+    <data name="ValidationErrorClientGroupNotFoundError">
+        <value>Client group can not be found.</value>
+    </data>
+    <data name="EmbedReportUrlIsMissingError">
+        <value>No WebApi Url defined for report.</value>
+    </data>
+    <data name="ValidationError_EmbedWorkSpaceMissingForClone">
+        <value>No workspace defined in the request.</value>
+    </data>
+    <data name="ValidationError_EmbedReportsMissingError">
+        <value>No report defined for embedding.</value>
+    </data>
+    <data name="ValidationErrorCredentialMissingError">
+        <value>Credential not  defined for embedding.</value>
+    </data>
+    <data name="EmbedReportNotFoundError">
+        <value>No reports were found in the workspace.</value>
+    </data>
 </root>

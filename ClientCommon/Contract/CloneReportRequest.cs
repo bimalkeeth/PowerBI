@@ -8,8 +8,7 @@ namespace ClientCommon.Contract
     {
         public UserData Credential { get; set; }
         public CloneReport[] CloneReports { get; set; }
-        public string ParentWorkSpace { get; set; }
-
-        public string ClientWorkSpace { get; set; }
+        public string ParentWorkSpaceId { get; set; }
+        public string ClientWorkSpaceId { get; set; }
     }
 }
