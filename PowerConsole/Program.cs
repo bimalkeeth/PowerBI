@@ -11,14 +11,7 @@ namespace PowerConsole
         static void Main(string[] args)
         {
             
-         var service=new PowerBIService.Services.Implementation.PowerService();
-
          
-         
-         
-           
-           
-            Console.WriteLine("Hello World!");
         }
     }
 }
