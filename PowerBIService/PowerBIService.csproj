@@ -6,6 +6,10 @@
    
     <ItemGroup>
      
+      <Reference Include="Bifrost, Version=1.0.0.31, Culture=neutral, PublicKeyToken=15f78c29a367ce62">
+        <HintPath>C:\Users\bkaluarachchi\.nuget\packages\bifrost\1.0.0.31\lib\net451\Bifrost.dll</HintPath>
+      </Reference>
+     
       <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
         <HintPath>..\..\..\.nuget\packages\microsoft.rest.clientruntime\2.3.18\lib\netstandard1.4\Microsoft.Rest.ClientRuntime.dll</HintPath>
       </Reference>
@@ -20,7 +24,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ClientCommon\ClientCommon.csproj" />
-      <ProjectReference Include="..\PowerClient\PowerClient.csproj" />
+      
     </ItemGroup>
 
 </Project>

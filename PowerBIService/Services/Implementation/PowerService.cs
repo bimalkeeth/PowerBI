@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Bifrost.Extensions;
-using ClientCommon;
 using ClientCommon.Contract;
 using ClientCommon.Resources;
 using Microsoft.PowerBI.Api.V2;

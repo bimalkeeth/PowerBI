@@ -17,9 +17,6 @@
         "projectReferences": {
           "D:\\Assetics\\PowerBI\\PowerBI\\ClientCommon\\ClientCommon.csproj": {
             "projectPath": "D:\\Assetics\\PowerBI\\PowerBI\\ClientCommon\\ClientCommon.csproj"
-          },
-          "D:\\Assetics\\PowerBI\\PowerBI\\PowerClient\\PowerClient.csproj": {
-            "projectPath": "D:\\Assetics\\PowerBI\\PowerBI\\PowerClient\\PowerClient.csproj"
           }
         }
       }
