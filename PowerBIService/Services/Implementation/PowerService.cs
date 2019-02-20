@@ -291,5 +291,34 @@ namespace PowerBIService.Services.Implementation
             return false;
         }  
        
+        #region Helper Methods
+        public async Task<NameValueContract[]> GetAllGroups(UserData credential)
+        {
+            UserCredential = credential;
+            await AuthenticateAsync();
+            var groupList = new List<NameValueContract>();
+            using (var pClient = new PowerBIClient(new Uri(POWER_BI_API_URL), PTokenCredentials))
+            {
+                var groups = await pClient.Groups.GetGroupsWithHttpMessagesAsync();
+                groupList.AddRange(groups.Body.Value.Select(@group => new NameValueContract {Id = @group.Id, Name = @group.Name}));
+            }
+            return groupList.ToArray();
+        }
+
+        public async Task<NameValueContract[]> GetAllReportInWorkSpace(GetReportRequest getReportRequest)
+        {
+            UserCredential = getReportRequest.Credential;
+            await AuthenticateAsync();
+            var reportList = new List<NameValueContract>();
+            using (var pClient = new PowerBIClient(new Uri(POWER_BI_API_URL), PTokenCredentials))
+            {
+                var reportsInGroup= await pClient.Reports.GetReportsInGroupWithHttpMessagesAsync(getReportRequest.WorkSpaceId);
+                reportList.AddRange(reportsInGroup.Body.Value.Select(@report => new NameValueContract {Id = @report.Id, Name = @report.Name}));
+              
+            }
+            return reportList.ToArray();
+            
+        }
+        #endregion
     }
 }

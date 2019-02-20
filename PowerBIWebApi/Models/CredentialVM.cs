@@ -1,10 +1,9 @@
-namespace PowerBIService.Common
+namespace WebClientDemo.Models
 {
-    public class UserData
+    public class CredentialVM
     {
         public string ApplicationId { get; set; }
         public string SecretId { get; set; }
         public string TenantId { get; set; }
-        
     }
 }

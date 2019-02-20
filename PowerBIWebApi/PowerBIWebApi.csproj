@@ -14,7 +14,14 @@
     </ItemGroup>
 
     <ItemGroup>
-   
+      <ProjectReference Include="..\ClientCommon\ClientCommon.csproj" />
+      <ProjectReference Include="..\PowerBIService\PowerBIService.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Bifrost, Version=1.0.0.31, Culture=neutral, PublicKeyToken=15f78c29a367ce62">
+        <HintPath>C:\Users\bkaluarachchi\.nuget\packages\bifrost\1.0.0.31\lib\net451\Bifrost.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

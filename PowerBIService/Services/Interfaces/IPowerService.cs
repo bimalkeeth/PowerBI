@@ -22,6 +22,10 @@ namespace PowerBIService.Services.Interfaces
         Task<CloneReportResponse[]> CloneReports(CloneReportRequest cloneReportRequest);
 
         Task<EmbedConfig> ClientEmbedReport(EmbedReportRequest embedReportRequest);
+
+        Task<NameValueContract[]> GetAllGroups(UserData credential);
+
+        Task<NameValueContract[]> GetAllReportInWorkSpace(GetReportRequest getReportRequest);
     }
 
    

@@ -14,7 +14,14 @@
     ],
     "frameworks": {
       "netcoreapp2.1": {
-        "projectReferences": {}
+        "projectReferences": {
+          "D:\\Assetics\\PowerBI\\PowerBI\\ClientCommon\\ClientCommon.csproj": {
+            "projectPath": "D:\\Assetics\\PowerBI\\PowerBI\\ClientCommon\\ClientCommon.csproj"
+          },
+          "D:\\Assetics\\PowerBI\\PowerBI\\PowerBIService\\PowerBIService.csproj": {
+            "projectPath": "D:\\Assetics\\PowerBI\\PowerBI\\PowerBIService\\PowerBIService.csproj"
+          }
+        }
       }
     },
     "warningProperties": {
