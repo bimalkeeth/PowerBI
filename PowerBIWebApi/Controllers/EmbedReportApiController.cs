@@ -13,16 +13,10 @@ namespace PowerBIWebApi.Controllers
     public class EmbedReportApiController : ControllerBase
     {
         protected readonly IPowerService _powerService;
-        private UserData Credential;
+     
         public EmbedReportApiController(IPowerService powerService)
         {
             _powerService = powerService;
-            Credential = new UserData
-            {
-                TenantId = "470cec91-5a0e-47c7-87a9-2fcaf82d5d90",
-                SecretId = "82(t[}]Ee+y&+GvT8[tjh+;U9[|x;",
-                ApplicationId = "66bec1b2-4684-4a08-9f2b-b67216d4695a",
-            };
         }
         /// <summary>
         /// Get All Groups within Service principles
@@ -97,7 +91,7 @@ namespace PowerBIWebApi.Controllers
         /// <returns></returns>
         
         [HttpPost]
-        [Route("api/values/EmbedReport", Name = "EmbedReport")]
+        [Route("api/reports/EmbedReport", Name = "EmbedReport")]
         public async Task<EmbedConfig> EmbedReport(EmbedReportRequestVM embedReportRequest)
         {
             var embedRequest=new EmbedReportRequest
@@ -120,5 +114,27 @@ namespace PowerBIWebApi.Controllers
             
             return responseData;
         }
+        
+        [HttpGet]
+        [Route("api/reports/AllGroups", Name = "GetAllGroups")]
+        public async Task<IEnumerable<GroupsVM>> GetAllGroups(CredentialVM credentialVm)
+        {
+            var list = new List<GroupsVM>();
+
+            var Credential = new UserData
+            {
+                SecretId = credentialVm.SecretId,
+                TenantId = credentialVm.TenantId,
+                ApplicationId = credentialVm.ApplicationId
+            };
+            
+            var Result =  await _powerService.GetAllGroups(Credential);
+            Result.ForEach(s =>
+            {
+                list.Add(new GroupsVM { GroupId = s.Id, GroupName = s.Name });
+            });
+            return list.ToArray();
+        }
+        
     }
 }
