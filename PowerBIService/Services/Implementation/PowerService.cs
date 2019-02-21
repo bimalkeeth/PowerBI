@@ -298,7 +298,6 @@ namespace PowerBIService.Services.Implementation
             
             using (var pClient = new PowerBIClient(new Uri(POWER_BI_API_URL), PTokenCredentials))
             {
-              
                 var groupSearch= await pClient.Groups.GetGroupsWithHttpMessagesAsync($"id eq '{memberAssignRequest.GroupId}'");
                 var group=  groupSearch.Body.Value.FirstOrDefault();
                 if (group == null)
@@ -351,6 +350,46 @@ namespace PowerBIService.Services.Implementation
             return reportList.ToArray();
             
         }
+
+        public async Task<bool> AddUsersToClonedReport(UserDataSetRequest userDataSetRequest)
+        {
+            UserCredential = userDataSetRequest.Credential;
+            await AuthenticateAsync();
+            using (var pClient = new PowerBIClient(new Uri(POWER_BI_API_URL), PTokenCredentials))
+            {
+                var groupSearch= await pClient.Groups.GetGroupsWithHttpMessagesAsync($"id eq '{userDataSetRequest.GroupId}'");
+                if (!groupSearch.Body.Value.Any())
+                    return false;
+                
+                var group=groupSearch.Body.Value.FirstOrDefault();
+                if (group == null) return false;
+
+                var report=await pClient.Reports.GetReportInGroupWithHttpMessagesAsync(group.Id, userDataSetRequest.ReportId);
+                if (report.Body==null)
+                    return false;
+
+              var dataSet=await pClient.Datasets.GetDatasetByIdInGroupWithHttpMessagesAsync(group.Id,report.Body.DatasetId);
+              
+              if(dataSet.Body.Tables==null)dataSet.Body.Tables=new List<Table>();
+              
+              dataSet.Body.Tables.Add(new Table
+              {
+                  Name = "Users",
+                  Columns = new List<Column>
+                  {
+                      new Column("UserId","string"),
+                      new Column("UserName","string"),
+                      new Column("UserEmail","string")
+                  }
+              });
+             //await pClient.Datasets.PutTableInGroupWithHttpMessagesAsync(group.Id,dataSet.Body);
+
+            }
+
+            return false;
+        }
+        
+        
         #endregion
     }
 }

@@ -6,8 +6,6 @@ namespace PowerBIService.Services.Interfaces
 {
     public interface IPowerService
     {
-       
-       
         Task<bool> CreateGroup(GroupCreateRequest groupCreateRequest);
        
         Task<CloneReportResponse[]> CloneReports(CloneReportRequest cloneReportRequest);
@@ -19,6 +17,8 @@ namespace PowerBIService.Services.Interfaces
         Task<NameValueContract[]> GetAllReportInWorkSpace(GetReportRequest getReportRequest);
 
         Task<bool> AssignUsersToGroup(GroupMemberAssignRequest memberAssignRequest);
+
+        Task<bool> AddUsersToClonedReport(UserDataSetRequest userDataSetRequest);
     }
 
    
