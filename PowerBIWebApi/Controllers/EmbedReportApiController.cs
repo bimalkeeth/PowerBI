@@ -45,6 +45,57 @@ namespace PowerBIWebApi.Controllers
         }
         
         
+        [HttpPost]
+        [Route("api/reports/CreatePowerBiGroup", Name = "CreatePowerBiGroup")]
+        public async Task<bool> CreatePowerBiGroup(GroupCreateRequestVM groupCreateRequest)
+        {
+            var request = new GroupCreateRequest {Credential =new UserData
+            {
+                TenantId = groupCreateRequest.Credential.TenantId,
+                SecretId = groupCreateRequest.Credential.SecretId,
+                ApplicationId = groupCreateRequest.Credential.ApplicationId
+                
+            },
+            GroupName = groupCreateRequest.GroupName,
+            Members = groupCreateRequest.Members.Select(s =>
+            {
+                var membersRights = new MembersRights
+                {
+                    MemberEmail = s.MemberEmail,
+                    GroupUserAccessRight = s.GroupUserAccessRight
+                };
+                return membersRights;
+                
+            }).ToArray()};
+            var Result =  await _powerService.CreateGroup(request);
+            return Result;
+        }
+        
+        [HttpPost]
+        [Route("api/reports/AssignPowerBiGroupUsers", Name = "AssignPowerBiGroupUsers")]
+        public async Task<bool> AssignPowerBiGroupUsers(GroupMemberAssignRequestVM groupMemberAssignRequest)
+        {
+            var request = new GroupMemberAssignRequest {Credential =new UserData
+                {
+                    TenantId = groupMemberAssignRequest.Credential.TenantId,
+                    SecretId = groupMemberAssignRequest.Credential.SecretId,
+                    ApplicationId = groupMemberAssignRequest.Credential.ApplicationId
+                
+                },
+                GroupId = groupMemberAssignRequest.GroupId,
+                Members = groupMemberAssignRequest.Members.Select(s =>
+                {
+                    var membersRights = new MembersRights
+                    {
+                        MemberEmail = s.MemberEmail,
+                        GroupUserAccessRight = s.GroupUserAccessRight
+                    };
+                    return membersRights;
+                
+                }).ToArray()};
+            var Result =  await _powerService.AssignUsersToGroup(request);
+            return Result;
+        }
         /// <summary>
         /// Clone Report from report repository
         /// </summary>
@@ -114,7 +165,11 @@ namespace PowerBIWebApi.Controllers
             
             return responseData;
         }
-        
+        /// <summary>
+        /// Get All Groups
+        /// </summary>
+        /// <param name="credentialVm"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/reports/AllGroups", Name = "GetAllGroups")]
         public async Task<IEnumerable<GroupsVM>> GetAllGroups(CredentialVM credentialVm)
@@ -135,6 +190,5 @@ namespace PowerBIWebApi.Controllers
             });
             return list.ToArray();
         }
-        
     }
 }

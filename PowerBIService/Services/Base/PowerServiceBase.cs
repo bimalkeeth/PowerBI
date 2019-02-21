@@ -24,12 +24,18 @@ namespace PowerBIService.Services.Base
         protected AuthenticationResult TokenResult { get; set; }
         protected TokenCredentials PTokenCredentials { get; set;}
         
-        
         protected static string POWER_BI_API_URL = "https://api.powerbi.com";
-        private static string POWER_BI_AUTHORITY_URL ="https://login.microsoftonline.com/{0}/oauth2/v2.0/token";
-        private static string POWER_BI_RESOURCE_URL = "https://analysis.windows.net/powerbi/api";
-       
+        private static string   POWER_BI_AUTHORITY_URL ="https://login.microsoftonline.com/{0}/oauth2/v2.0/token";
+        private static string   POWER_BI_RESOURCE_URL = "https://analysis.windows.net/powerbi/api";
+        protected TokenCache TC;
         #endregion
+
+        protected PowerServiceBase()
+        {
+             TC = new TokenCache();
+        }
+        
+        
         #region Authontication
         
         /// <summary>
@@ -41,7 +47,7 @@ namespace PowerBIService.Services.Base
         protected  async Task<bool> AuthenticateAsync()
         {
             
-            TokenCache TC = new TokenCache();
+            
             var clientCredential = new ClientCredential(UserCredential.ApplicationId, UserCredential.SecretId);
             AuthenticationContext ctx;
             
@@ -55,11 +61,12 @@ namespace PowerBIService.Services.Base
                 if (ctx.TokenCache.Count > 0)
                 {
                     var cacheToken = ctx.TokenCache.ReadItems().First().TenantId;
-                    ctx = new AuthenticationContext(string.Format(POWER_BI_AUTHORITY_URL,UserCredential.TenantId)+cacheToken ,false,TC);
+                    ctx = new AuthenticationContext(string.Format(POWER_BI_AUTHORITY_URL,UserCredential.TenantId)+"/"+cacheToken ,false,TC);
                 }
             }
             try
             {
+                ctx.ExtendedLifeTimeEnabled = true;
                 TokenResult = await ctx.AcquireTokenAsync(POWER_BI_RESOURCE_URL,clientCredential);
                 PTokenCredentials=new TokenCredentials(TokenResult.AccessToken,TokenResult.AccessTokenType);
                 
@@ -190,9 +197,6 @@ namespace PowerBIService.Services.Base
                 }
             }
         }
-
-        
-        
         #endregion
         
         

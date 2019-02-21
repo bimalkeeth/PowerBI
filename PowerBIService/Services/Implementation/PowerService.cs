@@ -288,9 +288,41 @@ namespace PowerBIService.Services.Implementation
                    });
                }
             }
-            return false;
-        }  
-       
+            return true;
+        }
+
+        public async Task<bool> AssignUsersToGroup(GroupMemberAssignRequest memberAssignRequest)
+        {
+            UserCredential = memberAssignRequest.Credential;
+            await AuthenticateAsync();
+            
+            using (var pClient = new PowerBIClient(new Uri(POWER_BI_API_URL), PTokenCredentials))
+            {
+              
+                var groupSearch= await pClient.Groups.GetGroupsWithHttpMessagesAsync($"id eq '{memberAssignRequest.GroupId}'");
+                var group=  groupSearch.Body.Value.FirstOrDefault();
+                if (group == null)
+                {
+                  throw new ValidationException(PowerResource.ValidationErrorParentGroupNotFoundError);   
+                }
+                if (memberAssignRequest.Members.Any())
+                {
+                    memberAssignRequest.Members.ForEach(async s =>
+                    {
+                        try
+                        {
+                            await pClient.Groups.AddGroupUserWithHttpMessagesAsync(group.Id,new GroupUserAccessRight{EmailAddress = s.MemberEmail, GroupUserAccessRightProperty = s.GroupUserAccessRight.GetRight()});
+                        }
+                        catch (Exception e)
+                        {
+                            throw new ApplicationException(PowerResource.ProcessError_UserAssignment);
+                        }
+                    });
+                }
+            }
+            return true;
+        }
+        
         #region Helper Methods
         public async Task<NameValueContract[]> GetAllGroups(UserData credential)
         {
