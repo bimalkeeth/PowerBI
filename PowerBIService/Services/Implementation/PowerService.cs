@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Bifrost.Extensions;
@@ -8,6 +9,7 @@ using ClientCommon.Resources;
 using Microsoft.PowerBI.Api.V2;
 using Microsoft.PowerBI.Api.V2.Models;
 using Microsoft.Rest;
+using Newtonsoft.Json;
 using PowerBIService.Common;
 using PowerBIService.Services.Base;
 using PowerBIService.Services.Interfaces;
@@ -271,7 +273,9 @@ namespace PowerBIService.Services.Implementation
             await AuthenticateAsync();
             using (var pClient = new PowerBIClient(new Uri(POWER_BI_API_URL), PTokenCredentials))
             {
-              
+
+              var ss=await pClient.Groups.GetGroupsWithHttpMessagesAsync();
+                
                var group= await pClient.Groups.CreateGroupWithHttpMessagesAsync(new GroupCreationRequest{Name =groupCreateRequest.GroupName},true);
                if (groupCreateRequest.Members.Any())
                {
@@ -357,37 +361,38 @@ namespace PowerBIService.Services.Implementation
             await AuthenticateAsync();
             using (var pClient = new PowerBIClient(new Uri(POWER_BI_API_URL), PTokenCredentials))
             {
-                var groupSearch= await pClient.Groups.GetGroupsWithHttpMessagesAsync($"id eq '{userDataSetRequest.GroupId}'");
+                var groupSearch =
+                    await pClient.Groups.GetGroupsWithHttpMessagesAsync($"id eq '{userDataSetRequest.GroupId}'");
                 if (!groupSearch.Body.Value.Any())
                     return false;
-                
-                var group=groupSearch.Body.Value.FirstOrDefault();
+
+                var group = groupSearch.Body.Value.FirstOrDefault();
                 if (group == null) return false;
 
-                var report=await pClient.Reports.GetReportInGroupWithHttpMessagesAsync(group.Id, userDataSetRequest.ReportId);
-                if (report.Body==null)
+                var report =
+                    await pClient.Reports.GetReportInGroupWithHttpMessagesAsync(group.Id, userDataSetRequest.ReportId);
+                if (report.Body == null)
                     return false;
 
-              var dataSet=await pClient.Datasets.GetDatasetByIdInGroupWithHttpMessagesAsync(group.Id,report.Body.DatasetId);
-              
-              if(dataSet.Body.Tables==null)dataSet.Body.Tables=new List<Table>();
-              
-              dataSet.Body.Tables.Add(new Table
-              {
-                  Name = "Users",
-                  Columns = new List<Column>
-                  {
-                      new Column("UserId","string"),
-                      new Column("UserName","string"),
-                      new Column("UserEmail","string")
-                  }
-              });
-             //await pClient.Datasets.PutTableInGroupWithHttpMessagesAsync(group.Id,dataSet.Body);
 
+                string rowsJson = "{\"rows\":" +
+                                  "[{\"UserEmail\":\"bkaluarachchi@assetic.com\",\"UserName\":\"Bimal\"}," +
+                                  "{\"UserEmail\":\"jerry@assetic.com\",\"UserName\":\"Jerry\"}," +
+                                  "]}";
+
+
+                string data =
+                    @"{ ""rows"": [ { ""name"": ""bkaluarachchi@assetic.com"", ""alpha2_code"": ""Bimal"", ""alpha3_code"": ""Bimal""}, { ""name"": ""bkaluarachchi@assetic.com"", ""alpha2_code"": ""Bimal"", ""alpha3_code"": ""Bimal""} ] }";
+                var dataJson = JsonConvert.DeserializeObject<Object>(data.ToString());
+               // pClient.Datasets.PostRowsInGroup(group.Id, report.Body.DatasetId, "all", dataJson);
+
+               await AddDataRows(group.Id, report.Body.DatasetId, "all", data);
             }
 
             return false;
         }
+
+   
         
         
         #endregion

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -197,6 +198,94 @@ namespace PowerBIService.Services.Base
                 }
             }
         }
+        
+        protected async Task AddDataRows(string groupId,string datasetId, string tableName, string rawJson)
+        {
+            var powerBIApiAddRowsUrl =$"https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets/{datasetId}/tables/{tableName}/rows";
+            var byteArray = Encoding.UTF8.GetBytes(rawJson);
+            var request2 = new HttpRequestMessage(new HttpMethod("POST"), powerBIApiAddRowsUrl) { };
+            Stream stream = new MemoryStream(byteArray);
+            var client = new HttpClient
+            {
+                Timeout = TimeSpan.FromMilliseconds(900000)
+            };
+            client.DefaultRequestHeaders.Add("Accept", "application/json; charset=utf-8");
+            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + TokenResult.AccessToken);
+            
+            
+            var contentDispositionHeaderValue = new ContentDispositionHeaderValue("form-data") {Name = "file0"};
+            HttpContent fileStreamContent = new StreamContent(stream);
+            fileStreamContent.Headers.ContentDisposition = contentDispositionHeaderValue;
+
+            var multiPartContent = new MultipartFormDataContent {fileStreamContent};
+            if (stream != null)
+            {
+                request2.Content = multiPartContent;
+            }
+            var response = await client.SendAsync(request2, default(CancellationToken));
+            if (!response.IsSuccessStatusCode)
+            {
+                try
+                {
+                    var exc = new HttpOperationException
+                    {
+                        Response = new HttpResponseMessageWrapper(response, await response.Content.ReadAsStringAsync())
+                    };
+                    throw exc;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+              
+            }
+        }
+        
+        protected async Task PostDataset(string groupId,string rawJson)
+        {
+            var powerBIApiAddRowsUrl =$"https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets";
+            var byteArray = Encoding.UTF8.GetBytes(rawJson);
+            var request2 = new HttpRequestMessage(new HttpMethod("POST"), powerBIApiAddRowsUrl) { };
+            Stream stream = new MemoryStream(byteArray);
+            var client = new HttpClient
+            {
+                Timeout = TimeSpan.FromMilliseconds(900000)
+            };
+            client.DefaultRequestHeaders.Add("Accept", "application/json; charset=utf-8");
+            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + TokenResult.AccessToken);
+            
+            var contentDispositionHeaderValue = new ContentDispositionHeaderValue("form-data") {Name = "file0"};
+            HttpContent fileStreamContent = new StreamContent(stream);
+            fileStreamContent.Headers.ContentDisposition = contentDispositionHeaderValue;
+
+            var multiPartContent = new MultipartFormDataContent {fileStreamContent};
+            if (stream != null)
+            {
+                request2.Content = multiPartContent;
+            }
+            var response = await client.SendAsync(request2, default(CancellationToken));
+            if (!response.IsSuccessStatusCode)
+            {
+                try
+                {
+                    var exc = new HttpOperationException
+                    {
+                        Response = new HttpResponseMessageWrapper(response, await response.Content.ReadAsStringAsync())
+                    };
+                    throw exc;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+              
+            }
+        }
+        
+        
+        
         #endregion
         
         
