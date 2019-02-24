@@ -369,32 +369,15 @@ namespace PowerBIService.Services.Implementation
                 var group = groupSearch.Body.Value.FirstOrDefault();
                 if (group == null) return false;
 
-                var report =
-                    await pClient.Reports.GetReportInGroupWithHttpMessagesAsync(group.Id, userDataSetRequest.ReportId);
+                var report =await pClient.Reports.GetReportInGroupWithHttpMessagesAsync(group.Id, userDataSetRequest.ReportId);
                 if (report.Body == null)
                     return false;
 
-
-                string rowsJson = "{\"rows\":" +
-                                  "[{\"UserEmail\":\"bkaluarachchi@assetic.com\",\"UserName\":\"Bimal\"}," +
-                                  "{\"UserEmail\":\"jerry@assetic.com\",\"UserName\":\"Jerry\"}," +
-                                  "]}";
-
-
-                string data =
-                    @"{ ""rows"": [ { ""name"": ""bkaluarachchi@assetic.com"", ""alpha2_code"": ""Bimal"", ""alpha3_code"": ""Bimal""}, { ""name"": ""bkaluarachchi@assetic.com"", ""alpha2_code"": ""Bimal"", ""alpha3_code"": ""Bimal""} ] }";
-                var dataJson = JsonConvert.DeserializeObject<Object>(data.ToString());
-               // pClient.Datasets.PostRowsInGroup(group.Id, report.Body.DatasetId, "all", dataJson);
-
-               await AddDataRows(group.Id, report.Body.DatasetId, "all", data);
+             
             }
-
             return false;
         }
-
-   
-        
-        
+ 
         #endregion
     }
 }

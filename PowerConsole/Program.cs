@@ -8,9 +8,9 @@ namespace PowerConsole
 {
     class Program
     {
-        public static readonly string TenantId = "";
-        public static readonly string SecretId = "";
-        public static readonly string ApplicationId = "";
+        public static readonly string TenantId = "470cec91-5a0e-47c7-87a9-2fcaf82d5d90";
+        public static readonly string SecretId = "gvQTuhCBvCEcMbuw3L1QV6il9qluUvkJ6PL4hr8hxzE=";
+        public static readonly string ApplicationId = "bcd57285-ddd1-4ae8-a8ad-cb72f7d24aaf";
         
         static void Main(string[] args)
         {
