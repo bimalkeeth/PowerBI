@@ -30,7 +30,7 @@ namespace PowerBIService.Services.Implementation
             MEmbedConfig = new EmbedConfig();
             MTileEmbedConfig = new TileEmbedConfig();
         }
-
+        
         public async Task<CloneReportResponse[]> CloneReports(CloneReportRequest cloneReportRequest)
         {
             if (string.IsNullOrWhiteSpace(cloneReportRequest.Credential.TenantId))
@@ -373,7 +373,6 @@ namespace PowerBIService.Services.Implementation
                 if (report.Body == null)
                     return false;
 
-             
             }
             return false;
         }
