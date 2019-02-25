@@ -4,6 +4,6 @@ namespace WebClientDemo.Models
     {
         public string GroupId { get; set; }
         public CredentialVM Credential { get; set; }
-        public MembersRightsVM[] Members { get; set;    
+        public MembersRightsVM[] Members { get; set; }
     }
 }

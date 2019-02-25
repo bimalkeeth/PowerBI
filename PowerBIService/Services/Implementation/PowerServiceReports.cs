@@ -17,19 +17,8 @@ using CloneReportRequest = ClientCommon.Contract.CloneReportRequest;
 
 namespace PowerBIService.Services.Implementation
 {
-    public class PowerService:PowerServiceBase,IPowerService
+    public partial class PowerService:PowerServiceBase,IPowerService
     {
-        
-        protected EmbedConfig         MEmbedConfig;
-        protected TileEmbedConfig     MTileEmbedConfig;
-        protected TokenCredentials    MTokenCredentials;
-
-        public PowerService()
-        {
-            MTokenCredentials = null;
-            MEmbedConfig = new EmbedConfig();
-            MTileEmbedConfig = new TileEmbedConfig();
-        }
         
         public async Task<CloneReportResponse[]> CloneReports(CloneReportRequest cloneReportRequest)
         {
@@ -354,29 +343,7 @@ namespace PowerBIService.Services.Implementation
             return reportList.ToArray();
             
         }
-
-        public async Task<bool> AddUsersToClonedReport(UserDataSetRequest userDataSetRequest)
-        {
-            UserCredential = userDataSetRequest.Credential;
-            await AuthenticateAsync();
-            using (var pClient = new PowerBIClient(new Uri(POWER_BI_API_URL), PTokenCredentials))
-            {
-                var groupSearch =
-                    await pClient.Groups.GetGroupsWithHttpMessagesAsync($"id eq '{userDataSetRequest.GroupId}'");
-                if (!groupSearch.Body.Value.Any())
-                    return false;
-
-                var group = groupSearch.Body.Value.FirstOrDefault();
-                if (group == null) return false;
-
-                var report =await pClient.Reports.GetReportInGroupWithHttpMessagesAsync(group.Id, userDataSetRequest.ReportId);
-                if (report.Body == null)
-                    return false;
-
-            }
-            return false;
-        }
- 
+      
         #endregion
     }
 }
