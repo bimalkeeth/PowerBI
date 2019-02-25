@@ -263,8 +263,6 @@ namespace PowerBIService.Services.Implementation
             using (var pClient = new PowerBIClient(new Uri(POWER_BI_API_URL), PTokenCredentials))
             {
 
-              var ss=await pClient.Groups.GetGroupsWithHttpMessagesAsync();
-                
                var group= await pClient.Groups.CreateGroupWithHttpMessagesAsync(new GroupCreationRequest{Name =groupCreateRequest.GroupName},true);
                if (groupCreateRequest.Members.Any())
                {
