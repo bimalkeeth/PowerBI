@@ -8,17 +8,14 @@ namespace PowerConsole
 {
     class Program
     {
-        public static readonly string TenantId = "470cec91-5a0e-47c7-87a9-2fcaf82d5d90";
-        public static readonly string SecretId = "gvQTuhCBvCEcMbuw3L1QV6il9qluUvkJ6PL4hr8hxzE=";
-        public static readonly string ApplicationId = "bcd57285-ddd1-4ae8-a8ad-cb72f7d24aaf";
+        public static readonly string TenantId = "";
+        public static readonly string SecretId = "";
+        public static readonly string ApplicationId = "";
         
         static void Main(string[] args)
         {
-            //CreateGroup();
-            //AddUserToGroup("f5057d7f-5f90-46fc-b5cc-97c5e1f218ac");
-            //GetAllGroups();
-            //GetAllReportInWorkSpace("463b0868-5933-4a89-9fa6-458d170aba31");
-            AssignUsersToCloneReport("3d5434f2-4e87-4da0-af27-3058986d42f4","7567ccac-08ab-4cc4-ad55-476fd0b55acf");
+          
+           
         }
 
 
