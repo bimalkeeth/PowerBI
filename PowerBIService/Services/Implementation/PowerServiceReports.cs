@@ -17,7 +17,7 @@ using CloneReportRequest = ClientCommon.Contract.CloneReportRequest;
 
 namespace PowerBIService.Services.Implementation
 {
-    public partial class PowerService:PowerServiceBase,IPowerService
+    public partial class PowerService
     {
         
         public async Task<CloneReportResponse[]> CloneReports(CloneReportRequest cloneReportRequest)

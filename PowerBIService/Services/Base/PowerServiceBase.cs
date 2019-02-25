@@ -198,7 +198,6 @@ namespace PowerBIService.Services.Base
                 }
             }
         }
-        
         protected async Task PostDataset(string groupId,string rawJson)
         {
             var powerBIApiAddRowsUrl =$"https://api.powerbi.com/v1.0/myorg/groups/{groupId}/datasets";
@@ -240,8 +239,28 @@ namespace PowerBIService.Services.Base
               
             }
         }
+        static async Task<HttpResponseMessage> PostAsync(string url, string data)
+        {
+            var client = new HttpClient
+            {
+                Timeout = TimeSpan.FromMilliseconds(900000)
+            };
+            HttpContent content = new StringContent(data);
+            HttpResponseMessage response = await client.PostAsync(url, content);
+            response.EnsureSuccessStatusCode();
+            return response;
+        }
         
-        
+        static async Task<HttpResponseMessage> GetAsync(string url)
+        {
+            var client = new HttpClient
+            {
+                Timeout = TimeSpan.FromMilliseconds(900000)
+            };
+             HttpResponseMessage response = await client.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+            return response;
+        }
         
         #endregion
         

@@ -35,6 +35,7 @@ namespace PowerBIService.Services.Implementation
 
                 var datasets =await pClient.Datasets.GetDatasetsInGroupWithHttpMessagesAsync(group.Id);
                 var dataset= datasets.Body.Value.FirstOrDefault(s => s.Id == tile.DatasetId);
+               
 
             }
             return false;
