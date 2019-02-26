@@ -25,17 +25,17 @@ namespace PowerBIWebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("api/reports/GetWorkSpaceReports/{groupId}", Name = "WorkspaceAllReports")]
-        public async Task<IEnumerable<PowerReport>> GetWorkSpaceReports(WorkSpaceRequest workSpaceRequest)
+        public async Task<IEnumerable<PowerReport>> GetWorkSpaceReports(WorkSpaceRequestVM workSpaceRequestVm)
         {
             var list = new List<PowerReport>();
 
             var request = new GetReportRequest {Credential =new UserData
             {
-                TenantId = workSpaceRequest.Credential.TenantId,
-                SecretId = workSpaceRequest.Credential.SecretId,
-                ApplicationId = workSpaceRequest.Credential.ApplicationId
+                TenantId = workSpaceRequestVm.Credential.TenantId,
+                SecretId = workSpaceRequestVm.Credential.SecretId,
+                ApplicationId = workSpaceRequestVm.Credential.ApplicationId
                 
-            }, WorkSpaceId = workSpaceRequest.GroupId};
+            }, WorkSpaceId = workSpaceRequestVm.GroupId};
             var Result =  await _powerService.GetAllReportInWorkSpace(request);
             Result.ForEach(s =>
             {
